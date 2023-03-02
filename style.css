@@ -2,7 +2,6 @@ html {
     font-family: Helvetica, Arial, sans-serif;
     font-size: 100%;
     box-sizing: border-box;
-    height: 100%;
 }
 
 :root {
@@ -23,7 +22,7 @@ html {
 }
 
 body {
-    height: 100%;
+    min-height: 100vh;
     width: 100%;
     margin: 0 auto;
     display: flex;
@@ -39,35 +38,47 @@ header {
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    text-align: center;
     gap: 1rem;
 }
 
-header > p {
+nav > h2,
+label {
     font-weight: bold;
-    font-size: 1.25rem;
+    font-size: 1.5rem;
 }
 
 nav {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     gap: 1rem;
 }
 
-.grid-size-btn {
+.nav-buttons {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+}
+
+.nav-btn {
     border: none;
     border-radius: 50px;
     background-color: var(--secondary-bg-color);
     color: var(--secondary-text-color);
-    padding: 1rem;
+    padding:  0.5rem 1rem;
     font-weight: bold;
-    font-size: 1.25rem;
+    font-size: 1rem;
+    text-align: center;
     cursor: pointer;
     transition: all 0.2s ease-in-out;
 }
 
-.grid-size-btn:hover,
+.nav-btn:hover,
+.nav-btn.active,
 .grid-size-btn.active {
     background-color: var(--hover-bg-color);
 }
@@ -76,12 +87,13 @@ nav {
     display: grid;
     grid-template-columns: repeat(16, 1fr);
     grid-template-rows: repeat(16, 1fr);
-    height: 100%;
-    max-height: 480px;
-    width: 100%;
-    max-width: 480px;
+    height: 400px;
+    max-height: 100%;
+    width: 400px;
+    max-width: 100%;
     background-color: var(--primary-bg-color);
     border: 3px solid var(--secondary-bg-color);
+    pointer-events: none;
 }
 
 .square {
@@ -89,7 +101,49 @@ nav {
     cursor: cell;
 }
 
-.square:hover {
-    background-color: var(--secondary-bg-color);
+.color-buttons {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+input[type="color"] {
+    border: none;
+    outline: none;
+    height: 30px;
+    width: 30px;
+    background-color: var(--primary-bg-color);
+    cursor: pointer;
+}
+
+  
+
+@media (max-width: 430px) {
+    .nav-buttons {
+        gap: 0.5rem;
+    }
+}
+
+@media (max-width: 401px) {
+    .nav-btn {
+        flex: 1 45%;
+    }
+}
+
+@media (max-width: 301px) {
+    .color-buttons {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+}
+
+@media (max-width: 301px) {
+    body {
+        font-size: 0.75rem;
+    }
+
+    .nav-btn {
+        flex: 1 100%;
+    }
 }
 

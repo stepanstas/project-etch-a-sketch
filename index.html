@@ -11,14 +11,23 @@
 <body>
     <header>
         <h1>Etch-a-Sketch</h1>
-        <p>Choose grid size...</p>
         <nav>
-            <button class="grid-size-btn" data-size="16">16 x 16</button>
-            <button class="grid-size-btn" data-size="32">32 x 32</button>
-            <button class="grid-size-btn" data-size="64">64 x 64</button>
-            <button class="grid-size-btn" id="reset-btn">Reset</button>
-        </nav>  
+            <h2>Select size...</h2>
+            <div class="nav-buttons">
+                <button class="nav-btn grid-size-btn" data-size="16">16 x 16</button>
+                <button class="nav-btn grid-size-btn" data-size="32">32 x 32</button>
+                <button class="nav-btn grid-size-btn" data-size="64">64 x 64</button>
+                <button class="nav-btn" id="reset-btn">Erase</button>
+            </div>
+            <div class="color-buttons">
+                <label for="color-picker">Choose a color...</label>
+                <input type="color" name="color-picker" id="color-picker">
+            </div>
+        </nav>
     </header>
     <div class="container-grid"></div>
+    <footer>
+        <small>&copy Created by Štěpán Šťastný.</small>
+    </footer>
 </body>
 </html>
