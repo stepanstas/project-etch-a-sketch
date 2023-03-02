@@ -1,10 +1,12 @@
 // Get the grid container and buttons for grid size
 const gridContainer = document.querySelector(".container-grid");
 const gridSizeBtns = document.querySelectorAll(".grid-size-btn");
+const colorPicker = document.querySelector("#color-picker");
 const resetBtn = document.querySelector("#reset-btn");
 
 // Set default grid size to 16
 let gridSize = 16;
+let selectedColor = "#000";
 
 // Create the grid squares 
 function createGrid(size) {
@@ -20,38 +22,57 @@ function createGrid(size) {
     }
 }
 
-gridSizeBtns.forEach((button) => {
-    button.addEventListener("click", (button) => {
-        const newGridSize = parseInt(button.dataset.size);
-        gridContainer.innerHTML = ""; // Clear the grid
-        createGrid(newGridSize); // Create a new sized grid
-        gridSize = newGridSize; // Update the new grid size to the variable
+function startGrid() {
+    createGrid(gridSize);
+
+    // Add event listeners to the grid size buttons
+    gridSizeBtns.forEach((button) => {
+        button.addEventListener("click", (event) => {
+            gridSizeBtns.forEach((button) => button.classList.remove("active"));
+            event.target.classList.toggle("active");
+            gridContainer.style.pointerEvents = "all";
+            const newGridSize = parseInt(event.target.dataset.size);
+            gridContainer.innerHTML = ""; // Clear the grid
+            createGrid(newGridSize); // Create a new sized grid
+            gridSize = newGridSize; // Update the new grid size to the variable
+        })
     })
-})
 
-// Change the color of squares on hover
-gridContainer.addEventListener("mouseover", (event) => {
-    if(event.target.classList.contains("square")) { 
+    // Add event listener to reset button
+    resetBtn.addEventListener("click", clearGrid);
 
-        // Create a random RGB color
-        const red = Math.floor(Math.random() * 256 );
-        const green = Math.floor(Math.random() * 256);
-        const blue = Math.floor(Math.random() * 256);
-        const color = `rgb(${red}, ${green}, ${blue})`;
-
-        // Set the background color of the square to the random generated color
-        event.target.style.backgroundColor = color;
+    // Function to clear the grid 
+    function clearGrid() {
+        const squares = document.querySelectorAll(".square");
+        squares.forEach((square) => {
+            square.style.backgroundColor = "transparent";
+        })
+        gridSizeBtns.forEach((button) => {
+            button.classList.remove("active");
+        })
+        gridContainer.style.pointerEvents = "none";
     }
-})
 
-// Function to reset and clear the grid 
-function clearGrid() {
-    const squares = document.querySelectorAll(".square");
-    squares.forEach((square) => {
-        square.style.backgroundColor = "transparent";
+    // Add event listener to change the color of squares on hover
+    gridContainer.addEventListener("mouseover", (event) => {
+        if(event.target.classList.contains("square")) { 
+
+            event.target.style.backgroundColor = selectedColor;
+            /* Create a random RGB color
+            const red = Math.floor(Math.random() * 256 );
+            const green = Math.floor(Math.random() * 256);
+            const blue = Math.floor(Math.random() * 256);
+            const color = `rgb(${red}, ${green}, ${blue})`;
+            */
+
+            // Set the background color of the square to the random generated color
+            //event.target.style.backgroundColor = color;
+        }
+    })
+
+    colorPicker.addEventListener("input", (event) => {
+        selectedColor = event.target.value;
     })
 }
 
-resetBtn.addEventListener("click", clearGrid);
-
-createGrid(gridSize);
+startGrid();
