@@ -7,7 +7,7 @@ html {
 :root {
     --primary-bg-color: #fff;
     --secondary-bg-color: #000;
-    --tertiary-bg-color: #3b3b3b;
+    --tertiary-bg-color: #eee;
     --hover-bg-color: #ff0000;
     --primary-text-color: #000;
     --secondary-text-color: #fff;
@@ -31,6 +31,7 @@ body {
     align-items: center;
     gap: 1rem;
     padding: 1rem;
+    background: var(--tertiary-bg-color);
 }
 
 header {
@@ -43,7 +44,8 @@ header {
 }
 
 nav > h2,
-label {
+label,
+.color-options > p {
     font-weight: bold;
     font-size: 1.5rem;
 }
@@ -70,6 +72,7 @@ nav {
     background-color: var(--secondary-bg-color);
     color: var(--secondary-text-color);
     padding:  0.5rem 1rem;
+    font-family: inherit;
     font-weight: bold;
     font-size: 1rem;
     text-align: center;
@@ -101,10 +104,25 @@ nav {
     cursor: cell;
 }
 
-.color-buttons {
+.color-options {
     display: flex;
     align-items: center;
     gap: 1rem;
+}
+
+#random-color-btn {
+    display: flex;
+    align-items: center;
+    background: none;
+    border-radius: 50px;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    font-family: inherit;
+    font-size: inherit;
+    font-weight: bold;
+    text-align: center;
+    font-size: 1.5rem;
 }
 
 input[type="color"] {
@@ -112,11 +130,9 @@ input[type="color"] {
     outline: none;
     height: 30px;
     width: 30px;
-    background-color: var(--primary-bg-color);
+    background-color: var(--tertiary-bg-color);
     cursor: pointer;
 }
-
-  
 
 @media (max-width: 430px) {
     .nav-buttons {
@@ -131,7 +147,7 @@ input[type="color"] {
 }
 
 @media (max-width: 301px) {
-    .color-buttons {
+    .color-options {
         flex-direction: column;
         gap: 0.5rem;
     }
