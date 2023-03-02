@@ -1,0 +1,95 @@
+html {
+    font-family: Helvetica, Arial, sans-serif;
+    font-size: 100%;
+    box-sizing: border-box;
+    height: 100%;
+}
+
+:root {
+    --primary-bg-color: #fff;
+    --secondary-bg-color: #000;
+    --tertiary-bg-color: #3b3b3b;
+    --hover-bg-color: #ff0000;
+    --primary-text-color: #000;
+    --secondary-text-color: #fff;
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    height: 100%;
+    width: 100%;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem;
+}
+
+header {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+}
+
+header > p {
+    font-weight: bold;
+    font-size: 1.25rem;
+}
+
+nav {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+}
+
+.grid-size-btn {
+    border: none;
+    border-radius: 50px;
+    background-color: var(--secondary-bg-color);
+    color: var(--secondary-text-color);
+    padding: 1rem;
+    font-weight: bold;
+    font-size: 1.25rem;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+}
+
+.grid-size-btn:hover,
+.grid-size-btn.active {
+    background-color: var(--hover-bg-color);
+}
+
+.container-grid {
+    display: grid;
+    grid-template-columns: repeat(16, 1fr);
+    grid-template-rows: repeat(16, 1fr);
+    gap: 0.125rem;
+    height: 100%;
+    max-height: 480px;
+    width: 100%;
+    max-width: 480px;
+    background-color: var(--primary-bg-color);
+    border: 3px solid var(--secondary-bg-color);
+}
+
+.square {
+    background-color: var(--primary-bg-color);
+}
+
+.square:hover {
+    background-color: var(--secondary-bg-color);
+}
+
