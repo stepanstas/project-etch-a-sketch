@@ -13,7 +13,7 @@ const resetBtn = document.querySelector("#reset-btn");
 
 // Set default grid size to 16
 let gridSize = 16;
-let selectedColor = "#000";
+let selectedColor = "#000000";
 
 // Create the grid squares
 function createGrid(size) {
@@ -58,49 +58,26 @@ function startGrid() {
     gridSizeBtns.forEach((button) => {
       button.classList.remove("active");
     });
-    selectedColor = "#000";
-    colorPicker.value = "#000";
+    selectedColor = "#000000";
+    colorPicker.value = "#000000";
     gridContainer.style.pointerEvents = "none";
   }
 
   resetBtn.addEventListener("click", clearGrid);
 
-  // Add event listener to change the color of squares on hover or touch
-  if ("ontouchstart" in window) {
-    // Check if device is touch device
-    gridContainer.addEventListener(
-      "touchstart",
-      (event) => {
-        if (event.target.classList.contains("square")) {
-          event.target.style.backgroundColor =
-            selectedColor;
-        }
-      }
-    );
-  } else {
-    gridContainer.addEventListener("mouseover", (event) => {
-      if (event.target.classList.contains("square")) {
-        event.target.style.backgroundColor = selectedColor;
-      }
-    });
-  }
+  // Add event listener to change the color of squares on hover
+  gridContainer.addEventListener("mouseover", (event) => {
+    if (event.target.classList.contains("square")) {
+      event.target.style.backgroundColor = selectedColor;
+    }
+  });
 
   // Add event listener to change to color of squares to a random generated color on hover
 
-  // Add event listener to change to color of squares to a random generated color on hover or touch
+  // Add event listener to change to color of squares to a random generated color on hover
   randomColorBtn.addEventListener("click", () => {
     const squares = document.querySelectorAll(".square");
     squares.forEach((square) => {
-      if ("ontouchstart" in window) {
-        // Check if device is touch device
-        square.addEventListener("touchstart", () => {
-          const red = Math.floor(Math.random() * 256);
-          const green = Math.floor(Math.random() * 256);
-          const blue = Math.floor(Math.random() * 256);
-          const color = `rgb(${red}, ${green}, ${blue})`;
-          selectedColor = color;
-        });
-      }
       square.addEventListener("mouseover", () => {
         const red = Math.floor(Math.random() * 256);
         const green = Math.floor(Math.random() * 256);
